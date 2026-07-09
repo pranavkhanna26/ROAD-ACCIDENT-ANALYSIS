@@ -1,5 +1,4 @@
 -- CREATE TABLE road_accident
-
 CREATE TABLE road_accident (
     accident_index VARCHAR(50) PRIMARY KEY,
     accident_date DATE,
@@ -23,7 +22,6 @@ CREATE TABLE road_accident (
 );
 
 -- Upload the new formatted file
-
 COPY road_accident
 FROM 'C:\PGadmin(SQL)\road_accident.csv'
 DELIMITER ','
@@ -37,7 +35,6 @@ SELECT SUM(number_of_casualties) as cy_casualties
 FROM road_accident
 
 -- TOTAL Casualties of 2022
-
 SELECT SUM(number_of_casualties) as CY_Casualties
 FROM road_accident
 WHERE EXTRACT( YEAR FROM accident_date) = 2022;
@@ -61,7 +58,6 @@ WHERE EXTRACT( YEAR FROM accident_date) = 2022
 AND accident_severity = 'Fatal'
 
 --Total Serious Casualties of 2022
-
 SELECT SUM(number_of_casualties) as CY_Seious_Casualties
 FROM road_accident
 WHERE EXTRACT( YEAR FROM accident_date) = 2022
@@ -74,28 +70,24 @@ WHERE EXTRACT( YEAR FROM accident_date) = 2022
 AND accident_severity = 'Slight';
 
 -- Ratio of slight casualties
-
 SELECT 
     (SELECT CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) FROM road_accident WHERE accident_severity = 'Slight') * 100
     / 
     (SELECT CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) FROM road_accident) AS slight_casualty_ratio;
 
 -- Ratio of fatal casualties
-
 SELECT
 	(SELECT CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) FROM road_accident WHERE accident_severity = 'Fatal') * 100
 	/
 	(SELECT CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) FROM road_accident) AS fatal_casualty_ratio;
 
 -- Ratio of Slight casualties
-
 SELECT
 	(SELECT CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) FROM road_accident WHERE accident_severity = 'Slight') * 100
 	/
 	(SELECT CAST(SUM(number_of_casualties) AS DECIMAL(10,2)) FROM road_accident) AS fatal_Slight_ratio;
 
 -- Changing group type
-
 SELECT 
     CASE
         WHEN vehicle_type IN ('Agricultural vehicle') THEN 'Agricultural'
@@ -110,9 +102,7 @@ FROM road_accident
 --WHERE EXTRACT(YEAR FROM accident_date) = 2022
 GROUP BY vehicle_group;
 
-
 --Current Year and Previous Year Casualties
-
 SELECT 
     TO_CHAR(accident_date, 'Month') AS month_name, 
     SUM(number_of_casualties) AS CY_Casualties
@@ -122,13 +112,11 @@ GROUP BY TO_CHAR(accident_date, 'Month'), EXTRACT(MONTH FROM accident_date)
 ORDER BY EXTRACT(MONTH FROM accident_date);
 
 -- Casualties from road type
-
 SELECT road_type, SUM(Number_of_casualties) AS CY_Casualties FROM road_accident
 WHERE EXTRACT(YEAR FROM accident_date) = 2022
 GROUP BY road_type;
 
 -- Casualties by Rural & Urban
-
 SELECT urban_or_rural_area,SUM(number_of_casualties)* 100/(SELECT SUM(number_of_casualties) FROM road_accident WHERE EXTRACT(YEAR FROM accident_date) = 2022)
 FROM road_accident
 WHERE EXTRACT(YEAR FROM accident_date) = 2022
@@ -150,13 +138,9 @@ SELECT
 	WHERE EXTRACT(YEAR FROM accident_date) = 2022
 	GROUP BY light_group;
 
-
 -- Top 10 location by number of casualties
-
 SELECT local_authority, SUM(number_of_casualties) AS Total_Casualties
 FROM road_accident
 GROUP BY local_authority
 ORDER BY Total_Casualties desc
 limit 10;
-
-	
