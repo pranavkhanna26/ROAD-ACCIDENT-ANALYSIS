@@ -1,7 +1,7 @@
 # 🚧 Road Accident Analysis Project
 
 An end-to-end data analytics project that transforms raw road accident records (2021–2022) into an interactive Power BI dashboard, helping transport authorities and safety agencies identify accident trends, high-risk locations, and casualty patterns.
-
+## Road Accident dash board image
 https://github.com/pranavkhanna26/ROAD-ACCIDENT-ANALYSIS/blob/main/ROAD%20ACCIDENT%20DB%20-overview.png
 
 ---
