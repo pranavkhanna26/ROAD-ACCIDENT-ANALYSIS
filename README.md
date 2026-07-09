@@ -4,7 +4,8 @@ An end-to-end data analytics project that transforms raw road accident records (
 
 ---
 ## Road Accident dash board image
-https://github.com/pranavkhanna26/ROAD-ACCIDENT-ANALYSIS/blob/b3c80f520af7b446ccacc63ec9c6a55f02d9b36e/ROAD%20ACCIDENT%20DB%20-overview.png
+
+![image alt](https://github.com/pranavkhanna26/ROAD-ACCIDENT-ANALYSIS/blob/b3c80f520af7b446ccacc63ec9c6a55f02d9b36e/ROAD%20ACCIDENT%20DB%20-overview.png)
 ---
 
 ## 📌 Table of Contents
